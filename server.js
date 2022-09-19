@@ -5,6 +5,8 @@ import useRoutes from './routes/Register.js'
 
 const app = express()
 
+app.use(express.json());
+
 const mongoUrl = 'mongodb://localhost:27017/userRegistration'
 
 app.use('/register', useRoutes)
@@ -16,6 +18,8 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
 });
+
+
 
 
 app.get('/', (req, res) => {
