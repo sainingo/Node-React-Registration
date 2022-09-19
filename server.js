@@ -1,19 +1,21 @@
 import express from 'express';
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 import useRoutes from './routes/Register.js'
 
 const app = express()
 
+const mongoUrl = 'mongodb://localhost:27017/userRegistration'
+
 app.use('/register', useRoutes)
 
-// mongoose.connect('mongodb://localhost:27017/usersdb',
-//   {
-//     useNewUrlParser: true,
-//     useFindAndModify: false,
-//     useUnifiedTopology: true
-//   }
-// );
+mongoose.connect(mongoUrl)
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error: "));
+db.once("open", function () {
+  console.log("Connected successfully");
+});
 
 
 app.get('/', (req, res) => {
