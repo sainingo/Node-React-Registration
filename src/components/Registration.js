@@ -8,14 +8,30 @@ const Registration = () => {
     password: "",
   })
 
-  const handleChange = (e) => {
-    setData({...data, [e.target.name]: e.target.value.trim()})
+  //fetch api
+  const url = 'http://localhost:5000/register'
+
+  const fetchData = async () => {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    const result = await response.json()
+    console.log(result)
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(data)
+    fetchData()
     setData({firstname: "", lastname: "", email: "", password: ""})
   }
+
+  const handleChange = (e) => {
+    setData({...data, [e.target.name]: e.target.value.trim()})
+  }
+
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -26,7 +42,8 @@ const Registration = () => {
             name="firstname" 
             value={data.firstname}
             onChange={handleChange}
-            placeholder="Enter your firstname" 
+            placeholder="Enter your firstname"
+            required 
             className='w-full p-4 border border-gray-300 rounded'/>
             </div>
             <div className='m-2'>
@@ -36,6 +53,7 @@ const Registration = () => {
              value={data.lastname}
              onChange={handleChange}
              placeholder="Enter your lastname"
+             required
               className='w-full p-4 border border-gray-300 rounded'/>
             </div>
             <div className='m-2'>
@@ -44,7 +62,8 @@ const Registration = () => {
             name="email" 
             value={data.email}
             onChange={handleChange}
-            placeholder="Enter your email" 
+            placeholder="Enter your email"
+            required 
             className='w-full p-4 border border-gray-300 rounded'/>
             </div>
             <div className='m-2'>
@@ -53,7 +72,8 @@ const Registration = () => {
             name="password" 
             value={data.password}
             onChange={handleChange}
-            placeholder="Enter your password" 
+            placeholder="Enter your password"
+            required 
             className='w-full p-4 border border-gray-300 rounded'/>
             </div>
             <div>
