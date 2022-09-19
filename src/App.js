@@ -7,13 +7,13 @@ import Registration from "./components/Registration";
 
 function App() {
   return (
-    <>
+    <div className="w-full h-screen bg-blue-200">
     <Header />
    <Routes>
       <Route path="/register" element={<Registration />} />
       <Route path="/login" element={<Login />} />
    </Routes>
-    </>
+    </div>
   );
 }
 
