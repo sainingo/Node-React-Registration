@@ -7,7 +7,7 @@ import Registration from "./components/Registration";
 
 function App() {
   return (
-    <div className="w-full h-screen bg-blue-200">
+    <div className="w-full h-screen bg-blue-100">
     <Header />
    <Routes>
       <Route path="/register" element={<Registration />} />
