@@ -14,6 +14,7 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(data)
+    setData({firstname: "", lastname: "", email: "", password: ""})
   }
   return (
     <div>
